@@ -1,6 +1,6 @@
 boto3
 streamlit
-pandas 
-numpy 
-statsmodel
+pandas
+numpy==1.23.5
+statsmodels==0.13.2
 sklearn
