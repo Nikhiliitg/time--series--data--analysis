@@ -76,6 +76,8 @@ jobs:
         env:
           STREAMLIT_EMAIL: ${{ secrets.STREAMLIT_EMAIL }}
           STREAMLIT_PASSWORD: ${{ secrets.STREAMLIT_PASSWORD }}
+          STREAMLIT_PORT: ${{ secrets.STREAMLIT_PORT }}
         run: |
           pip install streamlit
-          streamlit run app.py --server.enableCORS false --server.port ${{ secrets.STREAMLIT_PORT }}
+          Run Streamlit app directly from the root if app.py is at the root of the repo
+          streamlit run app.py --server.enableCORS false --server.enableXsrfProtection false --server.port ${{ secrets.STREAMLIT_PORT }}
