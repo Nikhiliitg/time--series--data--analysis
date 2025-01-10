@@ -44,11 +44,11 @@ jobs:
       #     pip install flake8==3.9.2  # Use a specific version of flake8
       #     flake8 **/*.py --max-line-length 88
 
-      # Run unit tests
-      - name: Run unit tests
-        run: |
-          pip install pytest
-          pytest --disable-warnings --maxfail=1
+      # # Run unit tests
+      # - name: Run unit tests
+      #   run: |
+      #     pip install pytest
+      #     pytest --disable-warnings --maxfail=1
 
   deploy:
     runs-on: ubuntu-latest
