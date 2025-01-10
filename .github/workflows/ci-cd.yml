@@ -78,4 +78,4 @@ jobs:
           STREAMLIT_PASSWORD: ${{ secrets.STREAMLIT_PASSWORD }}
         run: |
           pip install streamlit
-          streamlit run streamlit_app.py --server.enableCORS false --server.port ${{ secrets.STREAMLIT_PORT }}
+          streamlit run app.py --server.enableCORS false --server.port ${{ secrets.STREAMLIT_PORT }}
