@@ -1,1 +1,6 @@
-# Add project dependencies here
+boto3
+streamlit
+pandas 
+numpy 
+statsmodel
+sklearn
