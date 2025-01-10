@@ -1,4 +1,5 @@
 import logging
+import os
 from src.ets_decomposition import ETSDecomposition
 from src.time_series_models import TimeSeriesModels
 from src.etl_pipeline import ETLPipeline
@@ -18,10 +19,21 @@ def main():
             # Initialize ModelSaver
             model_saver = ModelSaver(save_dir="time-series-project/models")
 
+            # Ensure the directory exists
+            if not os.path.exists("time-series-project/models"):
+                os.makedirs("time-series-project/models")
+                logger.info("Created models directory.")
+
             # File path
             logger.info("Starting ETL pipeline...")
             processed_dir = 'time-series-project/data/processed'
             local_raw_file = 'time-series-project/data/raw/final_data.csv'
+
+            # Check if raw file exists
+            if not os.path.exists(local_raw_file):
+                logger.error(f"Raw data file not found: {local_raw_file}")
+                raise FileNotFoundError(f"Raw data file not found: {local_raw_file}")
+
             etl = ETLPipeline(
                 bucket_name='myrawdata7',
                 raw_file_name='final_data.csv',
@@ -58,7 +70,7 @@ def main():
             logger.info(f"Best SARIMA Params: {sarima_params}")
 
             # Tune SARIMAX
-            exog_data = None  # Replace with actual exogenous data
+            exog_data = None  # Replace with actual exogenous data if available
             tuner_with_exog = HyperparameterTuning(time_series_data, exog_train=exog_data)
             sarimax_params = tuner_with_exog.tune_sarimax(
                 p_values=[0, 1], d_values=[0, 1], q_values=[0, 1],
@@ -92,7 +104,7 @@ def main():
             logger.error(f"An error occurred during pipeline execution: {e}", exc_info=True)
 
     except Exception as e:
-        print(f"Error initializing the pipeline: {e}")
+        logger.error(f"Error initializing the pipeline: {e}", exc_info=True)
 
 if __name__ == "__main__":
     main()
