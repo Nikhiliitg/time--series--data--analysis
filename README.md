@@ -30,7 +30,7 @@ Performed time-series analysis and forecasting on Google's web traffic data to f
 
     6. Hyperparameter Tuned the Entire Model
           selecting the best parametes for the individual models
-        ![Hyperparameters](./images/Screenshot 2025-01-11 at 1.06.17 PM.png)
+        ![Hyperparameters](./images/hyperparameter.png)
 
 
     7. Saved the Model in the form of Pickle file(if needed it also can be deployed in any cloud services)
