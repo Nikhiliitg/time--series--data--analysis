@@ -1,51 +1,81 @@
-# Time-Series-Forcasting-on-Web-Traffic 
+# **Time-Series Forecasting on Web Traffic**
 
-Performed time-series analysis and forecasting on Google's web traffic data to forecast number of views of Wikipedia web page
+This project focuses on time-series analysis and forecasting of Google’s web traffic data to predict the number of views for a Wikipedia web page.  
 
-  - Tech-Stack: - 
+## **Tech Stack**
+- **Cloud Services:** AWS S3  
+- **Programming & Libraries:** Python, Boto3, pandas, os, Streamlit, Statsmodels  
+- **DevOps & CI/CD:** GitHub Actions  
 
-     AWS S3 , Python , Boto3 , pandas , os , Streamlit , Statsmodel , CI-CD Pipeline
-    
+---
 
-## Project Description
+## **Project Overview**
 
- - - the lifecycle of the project is as shown - -
-                   
-    ![Project Structure](./images/diagram-export-1-11-2025-12_14_22-PM.png)
+### **1. Data Loading and Storage**
+- Configured **AWS CLI** and created an **IAM User** with appropriate permissions.  
+- Uploaded raw time-series data into an **S3 Bucket** for centralized storage.  
 
-    1. Loading a RAW Data of Time Series into a S3 Bucket
-       (Configure AWS CLI , IAM User/Permission etc etc)
+---
 
-    2. Modularly Coded a ETL Pipeline . The pipeline Structure is as Shown 
-     
-      Extracts Raw Data From S3 ---> Store in Local data/raw dir ---> Load and Transform the Data for Further Approach ---> Store transformed Data into data/processed dir
+### **2. ETL Pipeline**
+Developed a modular **ETL pipeline** with the following structure:  
+1. **Extract:**  
+   - Retrieved raw data from the S3 bucket.  
+2. **Transform:**  
+   - Processed and cleaned the data for analysis.  
+   - Performed data transformations to prepare it for forecasting.  
+3. **Load:**  
+   - Saved the transformed data in a structured format into the local `data/processed` directory.  
 
-    3. ETS Decomposition the Data :
-       Observed trend of the Data fluctuation are mostly consistent over time , So performed a Additive ETS
+---
 
-    4. Train the Data with 3 Different Model 
-          ARIMA - Auto Regression Integrated Moving Average
-          SARIMA - Seasonal ARIMA
-          SARIMAX - Seasonal ARIMA with Exogenous Variable
+### **3. Exploratory Data Analysis (EDA) and ETS Decomposition**
+- Performed **ETS decomposition** to identify key components of the time series:  
+  - **Trend:** Observed a consistent fluctuation over time.  
+  - **Seasonality and Residuals:** Analyzed patterns to guide model selection.  
+- Applied an **Additive ETS** model based on observed trends.
 
-    6. Hyperparameter Tuned the Entire Model
-          selecting the best parametes for the individual models
-        ![Hyperparameters](./images/hyperparameter.png)
+---
 
+### **4. Model Training**
+Implemented and compared three forecasting models:  
+- **ARIMA** (Auto-Regressive Integrated Moving Average)  
+- **SARIMA** (Seasonal ARIMA)  
+- **SARIMAX** (Seasonal ARIMA with Exogenous Variables)  
 
-    7. Saved the Model in the form of Pickle file(if needed it also can be deployed in any cloud services)
+---
 
-    8. Streamlit Integration to Deploy the Model 
+### **5. Hyperparameter Tuning**
+- Conducted extensive hyperparameter tuning to optimize model performance.  
+- Selected the best parameters for each model.  
+![Hyperparameters](./images/hyperparameter.png)  
 
-    9. Github Intergration:
-        
-        --> Deployed the Entire Model In Github 
-        Though the Dataset was Not so Big So I didnt initialize DVC pipeline
-        (For Big amount of Data We will track the Dataflow With DVC)
+---
 
-        --> An Automated CI/CD Pipeline is also Integrated for the automated tests and automated deployement
+### **6. Model Serialization**
+- Saved the best-performing models as **pickle files** for future deployment.  
 
-        > The CI-CD integration was a challenging Tasks For me bcz of the dependencies issue (Github considered Python 3.10 as 3.1 😅)
+---
 
+### **7. Deployment with Streamlit**
+- Built a **Streamlit app** to deploy the trained model, enabling interactive forecasting.
 
+---
 
+### **8. CI/CD Pipeline Integration**
+- Integrated **GitHub Actions** to automate:  
+  - Testing  
+  - Deployment  
+- Addressed challenges in dependency management (e.g., GitHub misinterpreting Python 3.10 as 3.1 😅).  
+
+---
+
+### **9. GitHub Integration**
+- Hosted the entire project on GitHub for version control and collaboration.  
+- **DVC Pipeline:** Although the dataset was relatively small, plans were outlined to incorporate **DVC** for data versioning in projects with larger datasets.  
+
+---
+
+## **Diagram**
+The lifecycle of the project is illustrated below:  
+![Project Structure](./images/diagram-export-1-11-2025-12_14_22-PM.png)  
