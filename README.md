@@ -70,12 +70,45 @@ Implemented and compared three forecasting models:
 
 ---
 
-### **9. GitHub Integration**
+---
+## **9. Results** 
+“Now coming to the results.
+Instead of relying on visual graphs, I focused on quantitative comparison between models.
+👉 Pause
+I trained three models:
+ARIMA
+SARIMA
+SARIMAX
+The observations are quite clear:
+ARIMA performs the worst because it ignores seasonality.
+SARIMA significantly improves performance by capturing the weekly cycle.
+SARIMAX performs similarly to SARIMA, which tells us something interesting.
+
+It suggests that most of the useful information is already present in the internal seasonal pattern, and external variables add only limited improvement.
+
+So the performance gain is not due to complexity—it is due to correctly modeling the data.”
+
+---
+
+### **10. GitHub Integration**
 - Hosted the entire project on GitHub for version control and collaboration.  
-- **DVC Pipeline:** Although the dataset was relatively small, plans were outlined to incorporate **DVC** for data versioning in projects with larger datasets.  
+- **DVC Pipeline:** Although the dataset was relatively small, plans were outlined to incorporate **DVC** for data versioning in projects with larger datasets.
 
 ---
 
 ## **Diagram**
 The lifecycle of the project is illustrated below:  
 ![Project Structure](./images/diagram-export-1-11-2025-12_14_22-PM.png)  
+
+---
+
+## **Conclusion**
+“To conclude:
+This project shows how time-series forecasting improves when we move from simple models like ARIMA to more advanced ones like SARIMA and SARIMAX.
+It also demonstrates how combining statistical modeling with cloud-based data pipelines results in a more practical and scalable solution.
+However, there are limitations:
+These models assume that future patterns will follow past behavior, so they cannot predict sudden unexpected events.
+Also, being linear models, they may miss complex nonlinear relationships.
+As future work, we can explore deep learning approaches like LSTMs for better modeling.
+
+---
