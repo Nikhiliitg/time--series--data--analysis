@@ -82,6 +82,8 @@ def main():
             logger.info("Training ARIMA model...")
             models = TimeSeriesModels(time_series_data)
             arima_results = models.train_arima(order=arima_params["best_params"])
+            mae_arima = models.evaluate(arima_results["predictions"], "ARIMA")
+            logger.info(f"Final ARIMA MAE: {mae_arima}")
             model_saver.save_model(arima_results["model"], "ARIMA_Tuned")
             logger.info("ARIMA model trained and saved successfully.")
 
@@ -89,6 +91,8 @@ def main():
             logger.info("Training SARIMA model...")
             sarima_results = models.train_sarima(order=sarima_params["best_params"][:3],
                                                  seasonal_order=sarima_params["best_params"][3:] + (7,))
+            mae_sarima = models.evaluate(sarima_results["predictions"], "SARIMA")
+            logger.info(f"Final SARIMA MAE: {mae_sarima}")
             model_saver.save_model(sarima_results["model"], "SARIMA_Tuned")
             logger.info("SARIMA model trained and saved successfully.")
 
@@ -97,6 +101,8 @@ def main():
             sarimax_results = models.train_sarimax(order=sarimax_params["best_params"][:3],
                                                    seasonal_order=sarimax_params["best_params"][3:] + (7,),
                                                    exog_train=exog_data, exog_test=None)
+            mae_sarimax = models.evaluate(sarimax_results["predictions"], "SARIMAX")
+            logger.info(f"Final SARIMAX MAE: {mae_sarimax}")
             model_saver.save_model(sarimax_results["model"], "SARIMAX_Tuned")
             logger.info("SARIMAX model trained and saved successfully.")
 
